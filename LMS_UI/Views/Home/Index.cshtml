@@ -1,0 +1,14 @@
+﻿@model LMS_BL.Entities.Employee
+
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<ul>
+    <li>Name: @(Model.FirstName + " " + Model.MiddleName + " " + Model.LastName)</li>
+    <li>Department : @Model.Department.Name</li>
+    <li>Designation: @Model.Designation.Name</li>
+    <li>Location: @Model.Location.Name</li>
+</ul>

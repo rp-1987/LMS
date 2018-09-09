@@ -1,0 +1,98 @@
+﻿@model LMS_BL.Entities.EmployeeLeave
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <div class="container page-content">
+        <div class="example" data-text="Add Leave Application">
+            <div class="grid">
+                <div class="row cells1">
+                    <div class="cell">
+                        <label>Leave Type</label>
+                        <div class="input-control select full-size">
+                            @Html.DropDownListFor(model => model.LeaveTypeID, (IEnumerable<SelectListItem>)ViewBag.LeaveTypeID, "--Select Leave Type--")
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row cells2">
+                    <div class="cell">
+                        <label>From Date</label>
+                        <div class="input-control text full-size" data-role="datepicker" id="dvFromDate" data-format="dd-mmm-yyyy">
+                            @Html.TextBoxFor(model => model.FromDate)
+                            <button id="btnFromDate" class="button"><span class="mif-calendar"></span></button>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <label>To Date</label>
+                        <div class="input-control text full-size" data-role="datepicker" id="dvToDate" data-format="dd-mmm-yyyy" data-day-click="day_click">
+                            @Html.TextBoxFor(model => model.ToDate)
+                            <button id="btnToDate" class="button"><span class="mif-calendar"></span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row cells2">
+                    <div class="cell">
+                        <label>No of Days</label>
+                        <div class="input-control text full-size">
+                            <input id="txtDays" type="text" disabled>
+                        </div>
+                    </div>
+                    <div class="cell">
+
+                        <label class="input-control checkbox">
+                            <input type="checkbox" checked>
+                            <span class="check"></span>
+                            <span class="caption">Half Day</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row cells1">
+                    <div class="cell">
+                        <label>Comments</label>
+                        <div class="input-control textarea full-size">
+                            @Html.TextAreaFor(model => model.Comments)
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row cells2">
+                    <div class="cell">
+                        <input type="submit" id="btnDraft" name="Command" class="button primary" value="Save as Draft" />
+
+                    </div>
+                    <div class="cell">
+                        <input type="submit" id="btnSave" name="Command" class="button primary" value="Send For Approval" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            @Html.Action("GetEmployeeBalances")
+        </div>
+    </div>
+}
+
+
+
+<script type="text/javascript">
+
+
+    function day_click(short, full) {
+        debugger;
+        var fromDate = Date.parse(full);
+        var toDate = Date.parse($('#dvFromDate').attr('full').toString());
+        var timeDiff = Math.abs(toDate.getTime() - fromDate.getTime());
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        $('#txtDays').attr("value", diffDays.toString());
+        alert('hi');
+    }
+
+
+</script>
+

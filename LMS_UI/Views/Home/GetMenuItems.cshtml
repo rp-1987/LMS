@@ -1,0 +1,35 @@
+﻿@model IEnumerable<LMS_UI.Models.MenuViewModel>
+
+@{
+    var mainMenu = Model.Where(m => m.ParentMenuID == 0);
+    if (mainMenu != null && mainMenu.Count() > 0)
+    {
+    <div class="app-bar">
+        <ul class="app-bar-menu">
+            @foreach (var parent in mainMenu)
+            {
+                <li>
+                    <a class="dropdown-toggle" href="@parent.MenuUrl">@parent.MenuName</a>
+                    @{
+                var submenu = Model.Where(m => m.ParentMenuID == parent.MenuID);
+                if (submenu != null && submenu.Count() > 0)
+                {
+                    
+                        <ul class="d-menu" data-role="dropdown">  
+                            @foreach (var child in submenu)
+                            {
+                                <li>
+                                    <a href="@child.MenuUrl">@child.MenuName</a>
+                                </li>
+                            }
+                        </ul>
+                    
+                }
+                    }
+                </li>   
+            }
+        </ul>
+    </div>
+    }
+}
+

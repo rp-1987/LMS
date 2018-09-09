@@ -1,0 +1,57 @@
+﻿@model IEnumerable<LMS_BL.Entities.EmployeeLeaveApproval>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <table>
+        <tr>
+            <th>Employee
+            </th>
+            <th>Description
+            </th>
+            <th>Date Applied
+            </th>
+            <th>Days Applied For
+            </th>
+            <th>Action
+            </th>
+        </tr>
+        @foreach (var m in Model.ToList())
+        {
+            <tr>
+                <td>@(m.EmployeeLeave.Employee.FirstName)</td>
+                <td>Period: @m.EmployeeLeave.FromDate.ToShortDateString()
+                    &nbsp @m.EmployeeLeave.ToDate.ToShortDateString()
+                    <br />
+                    Type: @m.EmployeeLeave.LeaveType.Description
+                </td>
+                <td>
+                    @m.EmployeeLeave.FromDate.ToShortDateString()
+                </td>
+                <td>
+                    @m.EmployeeLeave.NoOfDays.ToString()
+                </td>
+                <td>
+                    @if (m.Status == "Pending")
+                    {
+                        <div id='@("dvMessage" + m.ID.ToString())'>
+                            @Ajax.ActionLink("Approve", "SetApproval","Leave", new { ID = m.ID, Task = "Approved" }, new AjaxOptions { UpdateTargetId = "dvMessage" + m.ID.ToString(), HttpMethod="POST" })
+                            &nbsp
+                    @Ajax.ActionLink("Reject", "SetApproval","Leave", new { ID = m.ID, Task = "Rejected" }, new AjaxOptions { UpdateTargetId = "dvMessage" + m.ID.ToString(), HttpMethod="POST" })
+                        </div>
+                    }
+                    else
+                    {
+                        @m.Status
+                    }
+
+                </td>
+            </tr>
+        }
+    </table>    
+}
+else
+{
+    <h3>No Data Found</h3>
+}
+
+

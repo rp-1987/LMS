@@ -1,0 +1,100 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Styles/metro.min.css" rel="stylesheet" />
+    <link href="~/Styles/metro-icons.min.css" rel="stylesheet" />
+    <link href="~/Styles/LMS.css" rel="stylesheet" />
+    <script src="~/Scripts/Jquery.js"></script>
+    <script src="~/Scripts/metro.min.js"></script>
+    <script>
+
+        /*
+        * Do not use this is a google analytics fro Metro UI CSS
+        * */
+       
+
+
+        $(function () {
+            var form = $(".login-form");
+
+            form.css({
+                opacity: 1,
+                "-webkit-transform": "scale(1)",
+                "transform": "scale(1)",
+                "-webkit-transition": ".5s",
+                "transition": ".5s"
+            });
+        });
+
+
+
+    </script>
+</head>
+
+<body class="bg-darkTeal">
+
+    <div class="login-form padding20 block-shadow">
+        @using (Html.BeginForm(null, null, FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+
+            <h1 class="text-light">Login to service</h1>
+
+            <hr class="thin" />
+
+            <br />
+
+            <div class="input-control text full-size" data-role="input">
+                <label>User email:</label>
+                @Html.TextBox("Username")
+                <button class="button helper-button clear"><span class="mif-cross"></span></button>
+            </div>
+
+            <br />
+
+            <br />
+
+            <div class="input-control password full-size" data-role="input">
+                <label>User password:</label>
+                @Html.Password("Password")
+                <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+            </div>
+
+            <br />
+
+            <br />
+
+            <div class="form-actions">
+                <input type="submit" class="button primary" value="Login" />
+            </div>
+        }
+        @if (ViewData["Error"] != null)
+        {
+            <script>
+                $(function () {
+                    $.Notify({
+                        caption: 'Error',
+                        content: 'Invalid username/password',
+                        type: 'alert'
+                    }
+                   );
+                });
+            </script>
+        }
+
+    </div>
+
+
+
+
+</body>
+
+
+</html>

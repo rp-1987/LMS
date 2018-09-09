@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LMS_BL.Entities.EmployeeLeaveBalance>
+
+<div class="accordion" data-role="accordion">
+    <div class="frame">
+        <div class="heading">Leave Balance Summary</div>
+        <div class="content">
+            <table class="table striped hovered border">
+                <tr>
+                    <th>Leave Code
+                    </th>
+                    <th>Entitled
+                    </th>
+                    <th>Taken
+                    </th>
+                    <th>Pending</th>
+                    <th>Balance</th>
+                </tr>
+
+                @foreach (var empBal in Model)
+                {
+                    <tr>
+                        <th>
+                            @empBal.Description
+                        </th>
+                        <td class="align-right">
+                            @empBal.Entitled.ToString()
+                        </td>
+                        <td class="align-right">
+                            @empBal.Taken.ToString()
+                        </td>
+                        <td class="align-right">
+                            @empBal.Pending.ToString()
+                        </td>
+                        <td class="align-right">
+                            @empBal.Balance.ToString()
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+

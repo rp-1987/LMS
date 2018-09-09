@@ -1,0 +1,43 @@
+﻿body {
+}
+
+.login-form {
+    width: 400px;
+    height: 300px;
+    position: fixed;
+    top: 50%;
+    margin-top: -150px;
+    left: 50%;
+    margin-left: -200px;
+    background-color: #ffffff;
+    opacity: 0;
+    -webkit-transform: scale(.8);
+    transform: scale(.8);
+}
+
+.topmenu-name {
+    display: inline-block;
+    float: right;
+    padding-top: 29px;
+    padding-right: 34px;
+}
+
+.topmenu-banner {
+    display: inline-block;
+}
+
+.topmenu {
+    margin-bottom: 10px;
+}
+
+
+.validation-summary-errors {
+    background-color: #CE352C;
+    color: #FFF;
+    display: block;
+    margin: .3125rem;
+    padding: .625rem;
+    min-width: 200px;
+    cursor: default;
+    max-width: 300px;
+}

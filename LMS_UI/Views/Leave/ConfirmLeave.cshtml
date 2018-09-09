@@ -1,0 +1,19 @@
+﻿@model LMS_BL.Entities.EmployeeLeave
+
+@{
+    ViewBag.Title = "ConfirmLeave";
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+
+<h2>ConfirmLeave</h2>
+<div>
+    You have applied for <b>@Model.LeaveType.Description</b>
+   <br /> No of days: <b>@Model.NoOfDays</b>
+    <br />From : <b>@Model.FromDate.ToShortDateString()</b>
+   <br /> To: <b>@Model.ToDate.ToShortDateString()</b>
+    <br />
+    <p>Your leave request has been sent to <b>(@Model.employeeLeaveApproval.Approver.FirstName &nbsp  @Model.employeeLeaveApproval.Approver.LastName)</b> <span>@Model.employeeLeaveApproval.ApproverID.ToString()</span> for approval</p>
+
+</div>
+
+@Html.ActionLink("Go Back","Add")

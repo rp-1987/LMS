@@ -1,0 +1,50 @@
+﻿@model LMS_BL.Entities.EmployeeLeave
+
+@{
+    ViewBag.Title = "DraftMessage";
+    Layout = "~/Views/Shared/_LayoutPopup.cshtml";
+}
+
+<h2>
+    Saved as Draft
+</h2>
+
+@*<div class="dialog success" data-role="dialog" data-close-button="false" data-type="success">*@
+<div class="bg-green fg-white">
+    <h2>
+        Your Leave has been saved!
+    </h2>
+    <table>
+        <tr>
+            <td>
+                <strong>
+                    Leave Type
+                </strong>
+            </td>
+            <td>
+                @Model.LeaveType.Description
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>
+                    From Date
+                </strong>
+            </td>
+            <td>
+                @Model.FromDate.ToString("dd-mmm-yyyy")
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>
+                    To Date
+                </strong>
+            </td>
+            <td>
+                @Model.ToDate.ToString("dd-mmm-yyyy")
+            </td>
+        </tr>
+    </table>
+</div>
+@Html.ActionLink("Go Back","Add")
